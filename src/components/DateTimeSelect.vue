@@ -42,19 +42,23 @@ export default {
     },
     computed: {
         datetime() {
-            if(!this.selectedDate) return null;
+            if(!this.selectedDate || !this.selectedTime) return null;
             let time = this.isAllday ? this.alldayTime : this.selectedTime;
             return dayjs(this.selectedDate + 'T' + time).toISOString();
         },
     },
     watch: {
         isAllday() {
-            this.updateDate(this.datetime);
+            if(this.datetime) {
+                this.updateDate(this.datetime);
+            }
         }
     },
     mounted() {
         this.setPrefilledDateAndTime();
-        this.updateDate(this.datetime);
+        if(this.datetime) {
+            this.updateDate(this.datetime);
+        }
     },
     methods: {
         updateDate() {
