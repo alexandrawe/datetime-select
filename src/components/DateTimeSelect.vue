@@ -48,10 +48,8 @@ export default {
         },
     },
     watch: {
-        isAllday(value) {
-            if(value) {
-                this.updateDate(this.datetime);
-            }
+        isAllday() {
+            this.updateDate(this.datetime);
         }
     },
     mounted() {
